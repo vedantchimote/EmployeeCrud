@@ -1,0 +1,165 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+left to right direction
+
+package PizzaStores
+{
+
+abstract class PizzaStore
+{
+ Pizza p
+ abstract Pizza createPizza()
+ void orderPizza()
+}
+
+
+class MumbaiPizzaStore
+{
+ Pizza createPizza()
+}
+class NagpurPizzaStore
+{
+Pizza createPizza()
+}
+}
+'----------------------------------------
+NagpurPizzaStore --|>  PizzaStore : extends
+MumbaiPizzaStore --|>  PizzaStore : extends
+
+package Ingredients
+{
+abstract class Cheese
+{
+abstract void display();
+}
+class CreamCheese
+{
+void display()
+}
+class MozzarellaCheese
+{
+void display()
+}
+abstract class Sauce
+{
+abstract void display();
+}
+class ChillySauce
+{
+void display()
+}
+class TomatoSauce
+{
+void display()
+}
+abstract class Dough
+{
+abstract void display();
+}
+class ThickDough
+{
+void display()
+}
+class ThinDough
+{
+void display()
+}
+}
+
+Pizza --o Sauce : make_use-of
+Pizza --o Dough : make_use-of
+Pizza --o Cheese : make_use-of
+
+
+CreamCheese --|> Cheese : extends
+MozzarellaCheese --|> Cheese : extends
+TomatoSauce --|> Sauce : extends
+ChillySauce --|> Sauce : extends
+ThickDough --|> Dough : extends
+ThinDough --|> Dough : extends
+
+
+'---------------------------------
+package Pizzza_Ingredients_Factory{
+
+interface PizzzaIngredientsFactory
+{
+    Dough createDough()
+
+     Sauce createSauce()
+
+     Cheese createCheese()
+}
+class MumbaiPizzaIngredientsFactory
+{
+  Dough createDough()
+
+     Sauce createSauce()
+
+     Cheese createCheese()
+}
+class NagpurPizzaIngredientsFactory
+{
+  Dough createDough()
+
+     Sauce createSauce()
+
+     Cheese createCheese()
+}
+
+}
+MumbaiPizzaIngredientsFactory ..|> PizzzaIngredientsFactory
+NagpurPizzaIngredientsFactory ..|> PizzzaIngredientsFactory
+
+PizzzaIngredientsFactory --* Sauce : produces
+PizzzaIngredientsFactory --* Dough : produces
+PizzzaIngredientsFactory --* Cheese : produces
+
+'-------------------------------------
+package Pizzas
+{
+abstract class Pizza
+{
+  Sauce s
+     Dough d
+     Cheese c
+     abstract void prepare()
+     void bake()
+     void cut()
+     void pack()
+
+}
+
+class CornPizza
+{
+PizzaIngredientsFactory pif
+CornPizza()
+void prepare()
+}
+class CheesePizza
+{
+  PizzaIngredientsFactory pif
+  CheesePizza()
+  void prepare()
+}
+}
+'-----------------------------------
+
+CornPizza --|>  Pizza : extends
+CheesePizza --|>  Pizza : extends
+
+
+
+class PizzaDemo
+{
+PizzaStore ps
+public static void main()
+}
+note right : Test Class
+
+
+PizzaStore --o Pizza : contains
+
+
+@enduml

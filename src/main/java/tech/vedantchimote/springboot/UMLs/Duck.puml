@@ -1,0 +1,108 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+left to right direction
+abstract class Duck
+note bottom : (Parent abstract duck class)
+
+class MallardDuck
+{
+   <b>public</b> display()
+   <b>public</b> constructor()
+}
+class RubberDuck
+{
+ <b>public</b> display()
+ <b>public</b> constructor()
+}
+class RedHeadDuck
+{
+<b>public</b> display()
+<b>public</b> constructor()
+}
+class WoodenDuck
+{
+<b>public</b> display()
+<b>public</b> constructor()
+}
+
+interface FlyBehavior
+{
+<b>public</b> void fly()
+}
+note bottom : (interface for FlyBehavior)
+
+class Fly_At_Less_Height
+{
+ <b>overridden</b> fly()
+}
+
+class Fly_At_More_Height
+{
+ <b>overridden</b> fly()
+}
+class FlyWithWings
+{
+ <b>overridden</b> fly()
+}
+class NoFly
+{
+ <b>overridden</b> fly()
+}
+
+
+interface QuackBehavior
+{
+<b>public</b> void quack()
+}
+note bottom : (interface for QuackBehavior)
+class NoQuack
+{
+ <b>overridden</b> quack()
+}
+class QuackQuack
+{
+ <b>overridden</b> quack()
+}
+class SqueekSqueek
+{
+ <b>overridden</b> quack()
+}
+
+class DuckTest
+{
+ public main()
+}
+
+
+MallardDuck --|>  Duck : extends
+RubberDuck --|>  Duck : extends
+RedHeadDuck --|>  Duck : extends
+WoodenDuck --|>  Duck : extends
+
+Fly_At_Less_Height ..|> FlyBehavior : implements
+Fly_At_More_Height ..|> FlyBehavior : implements
+FlyWithWings ..|> FlyBehavior : implements
+NoFly ..|> FlyBehavior : implements
+
+NoQuack ..> QuackBehavior : implements
+QuackQuack ..> QuackBehavior : implements
+SqueekSqueek ..> QuackBehavior : implements
+
+Duck o-- QuackBehavior : contains
+Duck o-- FlyBehavior : contains
+
+
+
+skinparam ClassAttributeIconSize 0
+class Duck{
+ <b>protected</b> QuackBehavior quackBehavior
+ <b>protected</b> FlyBehavior flyBehavior
+
+ <b>public</b> void performFly()
+ <b>public</b> void PerformQuack()
+ <b>public</b> void swim()
+}
+
+
+@enduml

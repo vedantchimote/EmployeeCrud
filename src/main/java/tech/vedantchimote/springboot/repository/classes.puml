@@ -1,0 +1,131 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+left to right direction
+
+class Customer {
+int CustomerId
+long phone_number
+String FirstName
+String LastName
+Address Address
+int ZipCode
+int CityId
+}
+
+Address <-- Customer : has
+
+enum PetType {
+Cat
+Dog
+etc
+}
+
+'enum Breed
+'{
+'
+'}
+'CatBreed --|> Breed : extends
+'DogBreed --|> Breed : extends
+'
+'enum CatBreed
+'{
+'Bengal Cat
+'Birman Cat
+'Balinese-Javanese Cat
+'American Wirehair Cat
+'American Shorthair
+'}
+'enum DogBreed
+'{
+'Labrador Retriever
+'Bulldog
+'Golden Retriever
+'German Shepherd
+'Poodle
+'Beagle
+'}
+
+class Purchases
+{
+int quantity
+int discountUsed
+Date date
+}
+
+class Products
+{
+int productId
+int quantity
+float price
+}
+
+class PetStores
+{
+String petStoreName
+Strign petStoreAddress
+String description
+}
+
+class Supplies
+{
+String supplyType
+String item
+}
+
+class Pets
+{
+int petID
+String petName
+Date petsDateOfBirth
+PetType petType
+Breed breed
+}
+
+enum Facilities
+{
+Grooming
+Vet
+}
+
+class Address
+{
+String line1
+String line2
+String city
+String State
+int zip
+}
+
+Customer --> Purchases : action
+Purchases --> Products
+Supplies -- Products : includes
+Pets -- Products : require
+Facilities -- Pets : enjoys
+PetStores --> Products : provides
+'Breed -- Pets : has
+PetType -- Pets : has
+
+class Login
+{
+ String username
+ String password
+}
+
+class Client
+{
+ Customer customer
+}
+
+Client -- Login : logins
+Client -- Products : views
+
+class Cart
+{
+ List<Product> products
+}
+
+Cart -- Products : contains
+Client -- Cart : add products
+
+@enduml
