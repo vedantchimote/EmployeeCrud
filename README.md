@@ -3,4 +3,4 @@ Employee details backend built using Spring Boot to perform basic CRUD operation
 
 Here's the class diagram for the following project
 
-<img src="employeeCrudClassDiagram.png">
+<img src="employeeCrudClassDiagram.png" alt="EmployeeCrud Project Class Diagram">
