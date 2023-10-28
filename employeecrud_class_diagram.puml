@@ -1,0 +1,100 @@
+@startuml
+left to right direction
+interface tech.vedantchimote.springboot.repository.StudentRepository {
+}
+class tech.vedantchimote.springboot.model.Employee {
+- long id
+- String firstName
+- String lastName
+- String emailId
++ <<Create>> Employee()
++ <<Create>> Employee(String,String,String)
++ long getId()
++ void setId(long)
++ String getFirstName()
++ void setFirstName(String)
++ String getLastName()
++ void setLastName(String)
++ String getEmailId()
++ void setEmailId(String)
+}
+class MavenWrapperDownloader {
+- {static} String WRAPPER_VERSION
+- {static} String DEFAULT_DOWNLOAD_URL
+- {static} String MAVEN_WRAPPER_PROPERTIES_PATH
+- {static} String MAVEN_WRAPPER_JAR_PATH
+- {static} String PROPERTY_NAME_WRAPPER_URL
++ {static} void main(String[])
+- {static} void downloadFileFromURL(String,File)
+}
+class tech.vedantchimote.springboot.SpringbootBackendApplication {
++ {static} void main(String[])
+}
+class tech.vedantchimote.springboot.exception.PraciticeException {
+- {static} long serialVersionUID
+~ <<Create>> PraciticeException(String)
+}
+interface tech.vedantchimote.springboot.repository.EmployeeRepository {
+}
+interface tech.vedantchimote.springboot.repository.TeacherRepository {
+}
+class tech.vedantchimote.springboot.controller.StudentController {
+- StudentRepository studentRepository
++ List<Student> getAllStudents()
++ ResponseEntity<Student> getRamdomStudent()
++ ResponseEntity<Student> getStudentById(Long)
++ ResponseEntity<Student> updateStudent(Long,Student)
++ ResponseEntity<Map<String,Boolean>> deleteEmployee(Long)
++ List<Student> getAllEvenStudents()
+}
+class tech.vedantchimote.springboot.controller.TeacherController {
+- TeacherRepository teacherRepository
++ List<Teacher> getTeachers()
++ ResponseEntity<Teacher> getTeacherById(Long)
++ ResponseEntity<Teacher> updateTeacher(Long,Teacher)
++ ResponseEntity<Map<String,Boolean>> deleteTeacher(Long)
+}
+class tech.vedantchimote.springboot.model.Teacher {
+- long id
+- String firstName
+- String lastName
+- String department
+- int age
+}
+enum Constants.Departments {
++  CSE
++  ME
++  ETC
++  EE
++  CE
+}
+class tech.vedantchimote.springboot.model.Student {
+- long id
+- String firstName
+- String lastName
+- int age
+- String department
+}
+class tech.vedantchimote.springboot.SpringbootBackendApplicationTests {
+~ void contextLoads()
+}
+class tech.vedantchimote.springboot.exception.ResourceNotFoundException {
+- {static} long serialVersionUID
++ <<Create>> ResourceNotFoundException(String)
+}
+class tech.vedantchimote.springboot.controller.EmployeeController {
+- EmployeeRepository employeeRepository
++ List<Employee> getAllEmployees()
++ Employee createEmployee(Employee)
++ ResponseEntity<Employee> getEmployeeById(Long)
++ ResponseEntity<Employee> updateEmployee(Long,Employee)
++ ResponseEntity<Map<String,Boolean>> deleteEmployee(Long)
+}
+
+
+org.springframework.data.jpa.repository.JpaRepository <|-- tech.vedantchimote.springboot.repository.StudentRepository
+tech.vedantchimote.springboot.exception.Exception <|-- tech.vedantchimote.springboot.exception.PraciticeException
+org.springframework.data.jpa.repository.JpaRepository <|-- tech.vedantchimote.springboot.repository.EmployeeRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- tech.vedantchimote.springboot.repository.TeacherRepository
+tech.vedantchimote.springboot.exception.RuntimeException <|-- tech.vedantchimote.springboot.exception.ResourceNotFoundException
+@enduml
