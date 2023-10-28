@@ -4,7 +4,7 @@
     <persistence-units>
       <persistence-unit name="Default">
         <packages>
-          <package value="net.javaguides.springboot" />
+          <package value="tech.vedantchimote.springboot" />
         </packages>
       </persistence-unit>
     </persistence-units>
